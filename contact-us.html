@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us — CloudQuota</title>
+  <meta name="description" content="Get in touch with CloudQuota — AI cloud cost optimization.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #202118;
+      --card-bg: #ffffff;
+      --text: #000000;
+      --placeholder: #999999;
+      --input-bg: rgba(187, 187, 187, 0.15);
+      --input-border: rgba(187, 187, 187, 0.3);
+      --focus: #0099ff;
+      --btn-bg: #261f21;
+      --btn-text: #ffffff;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+    }
+
+    /* ── Card ── */
+    .card {
+      background: var(--card-bg);
+      border-radius: 24px;
+      padding: 40px;
+      width: 100%;
+      max-width: 500px;
+    }
+
+    /* ── Logo ── */
+    .logo {
+      width: 89px;
+      height: auto;
+      margin-bottom: 32px;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 24px;
+      font-size: 14px;
+      color: var(--focus);
+      text-decoration: none;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+
+    /* ── Form ── */
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    label {
+      display: block;
+      font-size: 13px;
+      font-weight: 500;
+      margin-bottom: 6px;
+      opacity: 0.7;
+    }
+
+    input, textarea {
+      width: 100%;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      padding: 12px 14px;
+      background: var(--input-bg);
+      border: 1px solid var(--input-border);
+      border-radius: 10px;
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.2s ease;
+    }
+
+    input::placeholder, textarea::placeholder {
+      color: var(--placeholder);
+    }
+
+    input:focus, textarea:focus {
+      border-color: var(--focus);
+    }
+
+    input {
+      height: 44px;
+    }
+
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    /* ── Buttons row ── */
+    .btn-row {
+      display: flex;
+      gap: 18px;
+      margin-top: 24px;
+    }
+
+    .btn-submit {
+      flex: 1;
+      background: var(--btn-bg);
+      color: var(--btn-text);
+      border: none;
+      border-radius: 10px;
+      padding: 14px 24px;
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+
+    .btn-submit:hover {
+      opacity: 0.88;
+      transform: translateY(-1px);
+    }
+
+    /* ── Success message ── */
+    .success-msg {
+      display: none;
+      text-align: center;
+      padding: 32px 0;
+    }
+
+    .success-msg h2 {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .success-msg p {
+      font-size: 14px;
+      opacity: 0.65;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 480px) {
+      .card {
+        padding: 24px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <a href="index.html" class="back-link">&larr; Back</a>
+
+    <img src="img/logo.png"
+         alt="CloudQuota logo" class="logo">
+
+    <form id="contactForm">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="you@company.com" required>
+      </div>
+
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" placeholder="Your name">
+      </div>
+
+      <div class="form-group">
+        <label for="message">Message</label>
+        <textarea id="message" name="message" placeholder="Tell us about your cloud setup or what you're looking for…"></textarea>
+      </div>
+
+      <div class="btn-row">
+        <button type="submit" class="btn-submit">Send message</button>
+      </div>
+    </form>
+
+    <div class="success-msg" id="successMsg">
+      <h2>Thank you!</h2>
+      <p>We'll get back to you soon.</p>
+    </div>
+  </div>
+
+  <script>
+    // Simple form handler — replace with your backend or Formspree/Getform endpoint
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      // ── Option 1: Send to Formspree (replace YOUR_FORM_ID) ──
+      // this.action = 'https://formspree.io/f/YOUR_FORM_ID';
+      // this.method = 'POST';
+      // this.submit();
+
+      // ── Option 2: Simple mailto fallback ──
+      var email = document.getElementById('email').value;
+      var name = document.getElementById('name').value;
+      var message = document.getElementById('message').value;
+      var subject = encodeURIComponent('CloudQuota inquiry from ' + name);
+      var body = encodeURIComponent('From: ' + email + '\n\n' + message);
+      window.location.href = 'mailto:hello@cloudquota.com?subject=' + subject + '&body=' + body;
+
+      // Show success
+      this.style.display = 'none';
+      document.getElementById('successMsg').style.display = 'block';
+    });
+  </script>
+
+</body>
+</html>
